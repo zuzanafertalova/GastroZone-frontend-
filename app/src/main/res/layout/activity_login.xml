@@ -78,16 +78,18 @@
         android:layout_height="52dp"
         android:layout_marginTop="20sp"
         android:background="@drawable/button_turquoise"
+        app:backgroundTint="@null"
         android:fontFamily="@font/source_sans_pro"
         android:text="PRIHLÁSIŤ"
-        android:textColor="@android:color/white"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_login_pass"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintVertical_bias="0.068"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/text_register_2"
@@ -112,6 +114,7 @@
         android:background="@drawable/button_grey"
         android:fontFamily="@font/source_sans_pro"
         android:text="Vytvoriť účet"
+        app:backgroundTint="@null"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
