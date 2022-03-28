@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/button_darkgrey.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/button_turquoise.xml" value="0.2085" />
         <entry key="app/src/main/res/layout/acitivity_register_firm.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.24375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.22970797773720564" />
         <entry key="app/src/main/res/layout/activity_register_firm.xml" value="0.19610507246376813" />
