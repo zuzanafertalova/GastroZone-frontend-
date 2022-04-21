@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this,"Vyplňte všetky polia", Toast.LENGTH_SHORT).show()
             }
             else{
+                startHomeScreenActivity()
                 /*authAdapter.login(email,password, this, EventListener{user,_ ->
                     user?.let {
                         setUserToLocal(it)
@@ -36,6 +37,8 @@ class LoginActivity : AppCompatActivity() {
             intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         })
+
+
 
     }
 
