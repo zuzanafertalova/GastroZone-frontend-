@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gastrozone.http.HttpActivity
 import kotlinx.android.synthetic.main.activity_register_firm.*
 
 class RegisterFirmActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,19 +25,23 @@ class RegisterFirmActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty() || confrimpassword.isEmpty()) {
                 Toast.makeText(this, "Please fill up all fields", Toast.LENGTH_SHORT).show()
 
-            }
-
-            else {
+            } else {
 
                 if (password.equals(confrimpassword)) {
-
-                            Toast.makeText(this, "Môžete sa prihlásiť", Toast.LENGTH_SHORT).show()
-                            intent = Intent(this, LoginActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                        }
-
-                else { Toast.makeText(this, "Your passwords does not match", Toast.LENGTH_SHORT).show() }
+                    val url = "http://37.9.170.36:8080/create_company"
+                    val jsonPost =
+                        "{\"password\": \"$password\", \"email\": \"$email\", \"name\": \"$email\"," +
+                                " \"vat_number\": \"$ico\", \"type_id\": \"1\"}"
+                    val response = HttpActivity()
+                    val token = response.register(url, jsonPost)
+                    System.out.println(token)
+                    Toast.makeText(this, "Môžete sa prihlásiť", Toast.LENGTH_SHORT).show()
+                    intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Your passwords does not match", Toast.LENGTH_SHORT).show()
+                }
 
             }
         })

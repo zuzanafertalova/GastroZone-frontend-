@@ -10,11 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.gastrozone.http.HttpActivity
 import kotlinx.android.synthetic.main.activity_register.*
 
-
 class RegisterActivity : AppCompatActivity() {
-
-    //val authAdapter = AuthAdapter()
-    //val dbAdapterUser = DbAdapterUser()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +35,8 @@ class RegisterActivity : AppCompatActivity() {
                     val jsonPost =
                         "{\"password\": \"$password\", \"email\": \"$email\", \"username\": \"$email\"}"
                     val response = HttpActivity()
-                    val token = response.getRequest(url, jsonPost)
+                    val token = response.register(url, jsonPost)
+                    System.out.println(token)
 
                     Toast.makeText(this, "Registrácia úspešná, prihláste sa.", Toast.LENGTH_SHORT).show()
 
@@ -59,7 +56,6 @@ class RegisterActivity : AppCompatActivity() {
             intent = Intent(this, RegisterFirmActivity::class.java)
             startActivity(intent)
         })
-
 
     }
 }

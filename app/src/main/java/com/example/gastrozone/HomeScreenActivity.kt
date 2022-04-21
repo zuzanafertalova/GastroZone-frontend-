@@ -10,6 +10,7 @@ class HomeScreenActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
 
+
         /*if(dbAdapterUser.getStatusOfLoggedUser().equals("User")){
             tvChangeTypPodniku2.visibility = View.GONE
             btnShowOptions2.visibility = View.GONE
