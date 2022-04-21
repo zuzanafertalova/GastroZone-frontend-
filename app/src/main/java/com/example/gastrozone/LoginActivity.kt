@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gastrozone.http.HttpActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONObject
 import java.util.*
 
 class LoginActivity : AppCompatActivity() {
@@ -37,7 +38,6 @@ class LoginActivity : AppCompatActivity() {
                 val auth = "Basic $encodedString"
                 println(auth)
                 val token = response.login(url, auth)
-                println(token)
 
                 Toast.makeText(this, "Prihlásenie prebehlo úspešne!", Toast.LENGTH_SHORT).show()
 
