@@ -54,6 +54,22 @@ class HttpActivity : AppCompatActivity() {
         }
         return result
     }
+    fun filter(sUrl: String): String? {
+        var result: String? = null
+        try {
+            val requestBuilder = Request.Builder()
+                .url(sUrl)
+                .header("Authorization", "Bearer " + Token.token)
+                .build()
+            val response = client.newCall(requestBuilder).execute()
+            result = response.body?.string()
+            println(result)
+
+        } catch (err: Error) {
+            print("Error when executing get request: " + err.localizedMessage)
+        }
+        return result
+    }
 }
 object  Token
 {
