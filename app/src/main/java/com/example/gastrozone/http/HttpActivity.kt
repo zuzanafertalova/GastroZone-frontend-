@@ -8,6 +8,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.internal.EMPTY_REQUEST
 import org.json.JSONObject
+import org.json.JSONTokener
 
 
 class HttpActivity : AppCompatActivity() {
@@ -43,10 +44,10 @@ class HttpActivity : AppCompatActivity() {
                 .build()
             val response = client.newCall(requestBuilder).execute()
             result = response.body?.string()
-            val json = JSONObject(result)
-            val status = json.getString("token")
+            val jsonObject = JSONTokener(result).nextValue() as JSONObject
+            val token = jsonObject.getString("token")
             println(Token.token)
-            Token.change_token(status)
+            Token.change_token(token)
             println(Token.token)
 
         } catch (err: Error) {
@@ -63,9 +64,9 @@ class HttpActivity : AppCompatActivity() {
                 .build()
             val response = client.newCall(requestBuilder).execute()
             result = response.body?.string()
-            val json = JSONObject(result)
-            val status = json.getString("list_of_companies")
-            println(status)
+            val jsonObject = JSONTokener(result).nextValue() as JSONObject
+            val filter = jsonObject.getString("list_of_companies")
+            println(filter)
 
         } catch (err: Error) {
             print("Error when executing get request: " + err.localizedMessage)
