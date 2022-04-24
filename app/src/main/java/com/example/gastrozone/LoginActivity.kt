@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Vyplňte všetky polia", Toast.LENGTH_SHORT).show()
             } else {
-                val url = "http://10.0.2.2:5000/login"
+                val url = "http://37.9.170.36:8080/login"
                 val jsonPost = "$email:$password"
                 println(jsonPost)
                 val encodedString: String =
@@ -38,8 +38,8 @@ class LoginActivity : AppCompatActivity() {
                 val auth = "Basic $encodedString"
                 println(auth)
                 val token = response.login(url, auth)
-                val url_filter = "http://10.0.2.2:5000/companies/filter-by/type/1"
-                val filter = response.filter(url)
+                val url_filter = "http://37.9.170.36:8080/companies/filter-by/type/1"
+                val filter = response.filter(url_filter)
                 Toast.makeText(this, "Prihlásenie prebehlo úspešne!", Toast.LENGTH_SHORT).show()
 
                 startHomeScreenActivity()

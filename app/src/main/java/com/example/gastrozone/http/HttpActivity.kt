@@ -59,11 +59,13 @@ class HttpActivity : AppCompatActivity() {
         try {
             val requestBuilder = Request.Builder()
                 .url(sUrl)
-                .header("Authorization", "Bearer " + Token.token)
+                .header("X-Access-Token", Token.token)
                 .build()
             val response = client.newCall(requestBuilder).execute()
             result = response.body?.string()
-            println(result)
+            val json = JSONObject(result)
+            val status = json.getString("list_of_companies")
+            println(status)
 
         } catch (err: Error) {
             print("Error when executing get request: " + err.localizedMessage)
