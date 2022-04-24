@@ -75,7 +75,7 @@ class HttpActivity : AppCompatActivity() {
 }
 object  Token
 {
-    var token = "neviem ako dalej zit"
+    var token = ""
     fun change_token(new_token:String)
     {
         token = new_token
