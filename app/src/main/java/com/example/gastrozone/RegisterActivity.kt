@@ -38,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
                     val token = response.register(url, jsonPost)
                     System.out.println(token)
 
-                    Toast.makeText(this, "Registrácia úspešná, prihláste sa.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
 
                     intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
