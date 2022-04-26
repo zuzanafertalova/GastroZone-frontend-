@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GastroZone</string>
+    <string name="viewpager">ViewPager</string>
+    <string name="tab">Tab</string>
 </resources>

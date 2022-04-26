@@ -28,17 +28,23 @@ class RegisterFirmActivity : AppCompatActivity() {
             } else {
 
                 if (password.equals(confrimpassword)) {
-                    val url = "http://37.9.170.36:8080/create_company"
-                    val jsonPost =
-                        "{\"password\": \"$password\", \"email\": \"$email\", \"name\": \"$email\"," +
-                                " \"vat_number\": \"$ico\", \"type_id\": \"2\"}"
-                    val response = HttpActivity()
-                    val token = response.register(url, jsonPost)
-                    System.out.println(token)
-                    Toast.makeText(this, "Môžete sa prihlásiť", Toast.LENGTH_SHORT).show()
-                    intent = Intent(this, LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
+                    Thread(Runnable {
+                        val url = "http://37.9.170.36:8080/create_company"
+                        val jsonPost =
+                            "{\"password\": \"$password\", \"email\": \"$email\", \"name\": \"$email\"," +
+                                    " \"vat_number\": \"$ico\", \"type_id\": \"2\"}"
+                        val response = HttpActivity()
+                        val token = response.register(url, jsonPost)
+
+                        runOnUiThread {
+                            Toast.makeText(this, "Môžete sa prihlásiť", Toast.LENGTH_SHORT).show()
+                            intent = Intent(this, LoginActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                        }
+                    }).start()
+
+
                 } else {
                     Toast.makeText(this, "Your passwords does not match", Toast.LENGTH_SHORT).show()
                 }

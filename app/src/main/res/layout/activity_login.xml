@@ -33,7 +33,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pic_logo_login"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintVertical_bias="0.018" />
 
     <EditText
         android:id="@+id/input_login_email"
@@ -78,8 +78,8 @@
         android:layout_height="52dp"
         android:layout_marginTop="20sp"
         android:background="@drawable/button_turquoise"
-        app:backgroundTint="@null"
         android:fontFamily="@font/source_sans_pro"
+        app:backgroundTint="@null"
         android:text="PRIHLÁSIŤ"
         android:textColor="#FFFFFF"
         android:textSize="20sp"

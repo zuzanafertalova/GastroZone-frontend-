@@ -73,6 +73,7 @@
         android:fontFamily="@font/source_sans_pro"
         android:hint="Potvrď heslo"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         android:textColorHint="#CDCDCD"
         app:layout_constraintBottom_toTopOf="@+id/button_register"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +115,7 @@
     <Button
         android:id="@+id/button_login_redirect"
         android:layout_width="130dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:background="@drawable/button_grey"
         android:fontFamily="@font/source_sans_pro"
         android:paddingStart="12dp"

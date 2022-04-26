@@ -9,11 +9,37 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.internal.EMPTY_REQUEST
 import org.json.JSONObject
 import org.json.JSONTokener
+import java.sql.SQLOutput
+import kotlin.reflect.typeOf
 
 
-class HttpActivity : AppCompatActivity() {
+class HttpActivity : Runnable {
     // Create OkHttp Client
-    var client: OkHttpClient = OkHttpClient();
+    private val client: OkHttpClient = OkHttpClient()
+
+    override fun run() {
+    }
+
+    fun ExecGETRequest(uri: String, authTokenLegacy: String? = "ReplaceMe"): String? {
+
+
+        var authToken : String = this.get_token()
+
+        val requestBuilder = Request.Builder()
+            .url(uri)
+            .addHeader("X-Access-Token", authToken)
+            .addHeader("Connection","close")
+            .get()
+            .build()
+
+        val res = client.newCall(requestBuilder).execute()
+
+
+        return res.body?.string()
+    }
+
+
+
     fun register(sUrl: String, jsonPost: String): String? {
         var result: String? = null
         try {
@@ -39,22 +65,34 @@ class HttpActivity : AppCompatActivity() {
             val empty: RequestBody = EMPTY_REQUEST
             val requestBuilder = Request.Builder()
                 .url(sUrl)
-                .header("Authorization", auth)
+                .addHeader("Authorization", auth)
+                .addHeader("Connection","close")
                 .post(empty)
                 .build()
             val response = client.newCall(requestBuilder).execute()
+
             result = response.body?.string()
+            println("Got following payload: ${response.body}")
+
+            if (result?.isEmpty() == true) {
+                println("Got invalid response")
+            }
+
             val jsonObject = JSONTokener(result).nextValue() as JSONObject
             val token = jsonObject.getString("token")
-            println(Token.token)
+            val user_type = jsonObject.getString("user_type")
+
             Token.change_token(token)
             println(Token.token)
+            Token.user(user_type)
+            println(Token.user_type)
 
         } catch (err: Error) {
             print("Error when executing get request: " + err.localizedMessage)
         }
         return result
     }
+
     fun filter(sUrl: String): String? {
         var result: String? = null
         try {
@@ -73,12 +111,21 @@ class HttpActivity : AppCompatActivity() {
         }
         return result
     }
+
+    fun get_token() : String {
+        return Token.token
+    }
 }
-object  Token
-{
+
+
+object Token {
     var token = ""
-    fun change_token(new_token:String)
-    {
+    var user_type = ""
+    fun change_token(new_token: String) {
         token = new_token
+    }
+
+    fun user(new_user: String) {
+        user_type = new_user
     }
 }
