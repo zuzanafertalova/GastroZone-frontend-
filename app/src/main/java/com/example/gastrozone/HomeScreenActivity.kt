@@ -13,6 +13,8 @@ import com.example.gastrozone.adapters.ViewPagerAdapter
 import com.example.gastrozone.dialogs.BottomSheetTypeOfFirm
 import com.example.gastrozone.R
 import com.example.gastrozone.http.HttpActivity
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.bottom_sheet_filters.*
 import org.json.JSONObject
 import org.json.JSONTokener
 
@@ -22,7 +24,25 @@ class HomeScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
         val token = getIntent().getStringExtra("token")
-        val baseUrl = "http://37.9.170.36:8080"
+        val baseUrl = "http://10.0.2.2:5000"
+        var type = 5
+        btnShowOptions.setOnClickListener(View.OnClickListener{
+            setContentView(R.layout.bottom_sheet_filters)
+            tvRestauraciaFilter.setOnClickListener(View.OnClickListener {
+                type = 1
+            })
+        })
+        btnSetFirstSettings.setOnClickListener(View.OnClickListener{
+            Thread(Runnable {
+                val httpClient = HttpActivity()
+                val name: String = tvSetUsername.text.toString()
+                val jsonPut = "{\"name\": \"$name\"}"
+                val data = httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
+
+
+            }).start()
+
+        })
 
         setViewPager()
 

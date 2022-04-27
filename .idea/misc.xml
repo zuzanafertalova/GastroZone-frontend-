@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/activity_home_screen.xml" value="0.253125" />
+        <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/activity_profile_from_search.xml" value="0.253125" />
+        <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/activity_register.xml" value="0.253125" />
         <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/activity_register_firm.xml" value="0.296195652173913" />
+        <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/bottom_sheet_filters.xml" value="0.253125" />
+        <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/bottom_sheet_type_of_firm.xml" value="0.16109422492401215" />
+        <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/fragment_firstsettings.xml" value="0.253125" />
         <entry key="app/src/main/res/drawable/button_darkgrey.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/button_turquoise.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/textview_border_green.xml" value="0.2135" />

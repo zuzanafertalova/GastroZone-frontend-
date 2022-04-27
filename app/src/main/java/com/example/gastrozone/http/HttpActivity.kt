@@ -37,6 +37,24 @@ class HttpActivity : Runnable {
 
         return res.body?.string()
     }
+    fun ExecPUTRequest(uri: String, authTokenLegacy: String? = "ReplaceMe", putJson: String): String? {
+
+        val mediaTypeJson = "application/json; charset=utf-8".toMediaType()
+        var authToken : String = this.get_token()
+
+        val requestBuilder = Request.Builder()
+            .url(uri)
+            .addHeader("X-Access-Token", authToken)
+            .addHeader("Connection","close")
+            .header("Content-Type", "application/json")
+            .put(putJson.toRequestBody(mediaTypeJson))
+            .build()
+
+        val res = client.newCall(requestBuilder).execute()
+
+
+        return res.body?.string()
+    }
 
 
 
