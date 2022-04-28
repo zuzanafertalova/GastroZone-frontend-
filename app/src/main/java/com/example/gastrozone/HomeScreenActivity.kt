@@ -40,28 +40,9 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
         }).start()
 
 
-        /*btnShowOptions.setOnClickListener(View.OnClickListener {
-            setContentView(R.layout.bottom_sheet_filters)
-            tvRestauraciaFilter.setOnClickListener(View.OnClickListener {
-                type = 1
-            })
-        })*/
-        btnSetFirstSettings.setOnClickListener(View.OnClickListener {
-            Thread(Runnable {
-                val httpClient = HttpActivity()
-                val name: String = tvSetUsername.text.toString()
-                val jsonPut = "{\"name\": \"$name\"}"
-                val data = httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
-
-
-            }).start()
-
-        })
-
-
         setUsernameFragment()
         setUpOpenBottomSheetTypeOfFirm()
-        //btnSetUsernameSetClick()
+        btnSetUsernameSetClick()
     }
 
     fun setUsernameFragment() {
@@ -97,6 +78,51 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
 
     override fun onOptionClick(text: String) {
         tvTypPodnikuChosen.text = text
+    }
+
+    fun btnSetUsernameSetClick() {
+        btnSetFirstSettings.setOnClickListener(View.OnClickListener {
+            Thread(Runnable {
+                val baseUrl = "http://37.9.170.36:8080"
+                val httpClient = HttpActivity()
+                val token = getIntent().getStringExtra("token")
+                val data = httpClient.ExecGETRequest(uri = "$baseUrl/v1/api/user")
+                val jsonObject = JSONTokener(data).nextValue() as JSONObject
+                val is_company = jsonObject.getString("is_company").toBoolean()
+                val usernamePicked = tvSetUsername.text.toString()
+                val typPodniku = tvTypPodnikuChosen.text.toString()
+                if (!is_company) {
+                    if (!usernamePicked.equals("")) {
+                        val jsonPut = "{\"name\": \"$usernamePicked\"}"
+                        val data =
+                            httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
+                        runOnUiThread{
+
+                            fragmentSetUserame.view?.visibility = View.GONE
+                            setViewPager()
+                        }
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Nastavte si prosím uživateľské meno",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    if (!usernamePicked.equals("") && !typPodniku.equals("")) {
+                        val jsonPut = "{\"name\": \"$usernamePicked\", \"type_id\": \"999\"}"
+                        val data = httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
+                        runOnUiThread{
+                            setViewPager()
+                            fragmentSetUserame.view?.visibility = View.GONE
+                        }
+                    } else {
+                        Toast.makeText(this, "Vyplnte prosím všetky polia", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }).start()
+        })
     }
 
 
