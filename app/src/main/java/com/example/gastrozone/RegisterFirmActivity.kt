@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gastrozone.http.HttpActivity
 import kotlinx.android.synthetic.main.activity_register_firm.*
+import java.util.regex.Pattern
 
 class RegisterFirmActivity : AppCompatActivity() {
 
@@ -21,13 +22,17 @@ class RegisterFirmActivity : AppCompatActivity() {
             val confrimpassword: String = input_register_passConfirm_firm.text.toString()
             val ico: String = input_register_ico.text.toString()
 
+            val pattern_email: Pattern =
+                Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?!-)(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
+            val pattern_passwd =
+                Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
 
             if (email.isEmpty() || password.isEmpty() || confrimpassword.isEmpty()) {
                 Toast.makeText(this, "Please fill up all fields", Toast.LENGTH_SHORT).show()
 
             } else {
 
-                if (password.equals(confrimpassword)) {
+                if (password.equals(confrimpassword) && pattern_passwd.matcher(password).matches() && pattern_email.matcher(email).matches()) {
                     Thread(Runnable {
                         val url = "http://37.9.170.36:8080/create_company"
                         val jsonPost =

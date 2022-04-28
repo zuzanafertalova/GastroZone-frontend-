@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gastrozone.http.HttpActivity
 import kotlinx.android.synthetic.main.activity_register.*
+import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -26,11 +27,15 @@ class RegisterActivity : AppCompatActivity() {
             val email: String = input_register_email.text.toString()
             val password: String = input_register_pass.text.toString()
             val confrimpassword: String = input_register_passConfirm.text.toString()
+            val pattern_email: Pattern =
+                Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?!-)(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
+            val pattern_passwd =
+                Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
 
             if (email.isEmpty() || password.isEmpty() || confrimpassword.isEmpty()) {
                 Toast.makeText(this, "Vyplňte všetky polia", Toast.LENGTH_SHORT).show()
             } else {
-                if (password.equals(confrimpassword)) {
+                if (password.equals(confrimpassword) && pattern_passwd.matcher(password).matches() && pattern_email.matcher(email).matches()) {
                     val url = "http://37.9.170.36:8080/register"
                     val jsonPost =
                         "{\"password\": \"$password\", \"email\": \"$email\", \"username\": \"\"}"
