@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Vyplňte všetky polia", Toast.LENGTH_SHORT).show()
             } else {
                 Thread(Runnable {
-                    val url = "http://10.0.2.2:5000/login"
+                    val url = "http://37.9.170.36:8080/login"
                     val jsonPost = "$email:$password"
                     println(jsonPost)
                     val encodedString: String = Base64.getEncoder().encodeToString(jsonPost.toByteArray())
