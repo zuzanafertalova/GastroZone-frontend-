@@ -92,6 +92,7 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
                 val usernamePicked = tvSetUsername.text.toString()
                 val typPodniku = tvTypPodnikuChosen.text.toString()
                 if (!is_company) {
+                    // keď sa jedná o usera
                     if (!usernamePicked.equals("")) {
                         val jsonPut = "{\"name\": \"$usernamePicked\"}"
                         val data =
@@ -109,6 +110,7 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
                         ).show()
                     }
                 } else {
+                    // keď sa jedná o firmu
                     if (!usernamePicked.equals("") && !typPodniku.equals("")) {
                         val jsonPut = "{\"name\": \"$usernamePicked\", \"type_id\": \"999\"}"
                         val data = httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
