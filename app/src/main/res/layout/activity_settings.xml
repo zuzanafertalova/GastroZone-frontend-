@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,8 +25,7 @@
                 android:layout_gravity="center"
                 android:background="#22BCAF"
                 android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                android:visibility="visible">
+                android:theme="?attr/actionBarTheme">
 
                 <TextView
                     android:id="@+id/title"
@@ -37,8 +37,7 @@
                     android:gravity="center"
                     android:text="GastroTone"
                     android:textColor="@android:color/white"
-                    android:textSize="30dp"
-                    android:visibility="visible" />
+                    android:textSize="30dp" />
             </androidx.appcompat.widget.Toolbar>
 
             <ImageView
@@ -47,8 +46,7 @@
                 android:layout_height="150sp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10sp"
-                android:src="@drawable/teazone_logo_transparent"
-                android:visibility="visible" />
+                android:src="@drawable/gastrozone_logo_trans" />
 
             <TextView
                 android:id="@+id/tvSettings"
@@ -61,8 +59,7 @@
                 android:text="Nastavenia"
                 android:textColor="@color/colorGreyLogo"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:visibility="visible" />
+                android:textStyle="bold" />
 
             <fragment
                 android:id="@+id/fragmentChangeUsername"
@@ -70,7 +67,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10sp" />
+                android:layout_margin="10sp"
+                tools:layout="@layout/fragment_set_username" />
 
             <Button
                 android:id="@+id/buttonChangeUsername"
@@ -91,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10sp" />
+                android:layout_margin="10sp"
+                tools:layout="@layout/fragment_change_password" />
 
             <Button
                 android:id="@+id/buttonChangePassword"
@@ -113,7 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10sp" />
+                android:layout_margin="10sp"
+                tools:layout="@layout/fragment_change_profile_pic" />
 
             <Button
                 android:id="@+id/buttonChangeProfilePic"
@@ -162,7 +162,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10sp" />
+                android:layout_margin="10sp"
+                tools:layout="@layout/fragment_change_type_of_firm" />
 
             <Button
                 android:id="@+id/buttonChangeTypPodniku"

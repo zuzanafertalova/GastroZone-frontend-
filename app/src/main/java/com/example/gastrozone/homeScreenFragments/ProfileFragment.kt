@@ -53,9 +53,12 @@ class ProfileFragment : Fragment() {
 
     fun btnSettingsSetClick() {
         btnSettings.setOnClickListener {
-            val intent2 = Intent(activity, SettingsActivity::class.java)
-            intent2.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent2)
+            runOnUiThread {
+                val intent = Intent(activity, SettingsActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                activity?.startActivity(intent)
+            }
+
         }
     }
 
@@ -88,7 +91,7 @@ class ProfileFragment : Fragment() {
 
 
             } else {
-                runOnUiThread{
+                runOnUiThread {
                     //tvUsername.text = DbAdapterUser.userFirma.username
                     //tvEmail.text = DbAdapterUser.userFirma.email
                     //tvFollowing_FollowersProfileFragment.text = "Sledovatelia"
