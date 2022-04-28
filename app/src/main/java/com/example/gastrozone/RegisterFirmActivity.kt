@@ -31,7 +31,7 @@ class RegisterFirmActivity : AppCompatActivity() {
                     Thread(Runnable {
                         val url = "http://37.9.170.36:8080/create_company"
                         val jsonPost =
-                            "{\"password\": \"$password\", \"email\": \"$email\", \"name\": \"NONE\"," +
+                            "{\"password\": \"$password\", \"email\": \"$email\", \"name\": \"\"," +
                                     " \"vat_number\": \"$ico\", \"type_id\": \"999\"}"
                         val response = HttpActivity()
                         val token = response.register(url, jsonPost)

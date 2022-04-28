@@ -33,7 +33,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (password.equals(confrimpassword)) {
                     val url = "http://37.9.170.36:8080/register"
                     val jsonPost =
-                        "{\"password\": \"$password\", \"email\": \"$email\", \"username\": \"$email\"}"
+                        "{\"password\": \"$password\", \"email\": \"$email\", \"username\": \"\"}"
                     val response = HttpActivity()
                     val token = response.register(url, jsonPost)
                     System.out.println(token)

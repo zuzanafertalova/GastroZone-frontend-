@@ -25,7 +25,6 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
         setContentView(R.layout.activity_home_screen)
         val token = getIntent().getStringExtra("token")
         val baseUrl = "http://37.9.170.36:8080"
-        var type = 5
 
 //ak je to user, tak nastavenie typu podniku zmizne
         Thread(Runnable {
