@@ -9,11 +9,18 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import com.example.gastrozone.LoginActivity
 import com.example.gastrozone.R
+import com.example.gastrozone.http.HttpActivity
 
 class DialogDeleteAccount : DialogFragment(){
 
+    fun Fragment?.runOnUiThread(action: () -> Unit) {
+        this ?: return
+        if (!isAdded) return // Fragment not attached to an Activity
+        activity?.runOnUiThread(action)
+    }
 
     fun onCreateDialog(activity: Activity, inflater: LayoutInflater): Dialog {
         val builder = AlertDialog.Builder(activity)
@@ -25,19 +32,22 @@ class DialogDeleteAccount : DialogFragment(){
         builder.setPositiveButton("Potvrdiť", DialogInterface.OnClickListener{ dialog, id ->
             val password = tvPassword.text.toString()
             if (password.isNotEmpty()){
-                authAdapterUser.reauthenticate(password, EventListener{staloSa,_->
-                    if (staloSa==true){
-                        algoliaSearchAdapter.deleteObject(authAdapterUser.currentUser?.uid).toString()
-                        dbAdapterUser.deleteUserFromDatabase(authAdapterUser.currentUser!!, EventListener{spraviloSA,_->
-                            if (spraviloSA!!){
-                                startLoginActivity()
-                            }
-                        })
-                    }
-                    else{
-                        Toast.makeText(activity,"Heslo je nesprávne", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                Thread(Runnable {
+                    val httpClient = HttpActivity()
+                    val requestUrl = "http://37.9.170.36:8080/v1/api/user"
+                    val payloadData = """{"password": "$password"}"""
+
+                    var response: String = httpClient.ExecDeleteRequest(requestUrl, payloadData)
+                    println(response)
+
+                }).start()
+
+                Toast.makeText(activity,"Účet bol zmazany!", Toast.LENGTH_SHORT).show()
+                activity?.let {
+                    val intent = Intent(it, LoginActivity::class.java)
+                    it.startActivity(intent)
+                }
+
             }
             else{
                 Toast.makeText(activity,"Zadajte Heslo", Toast.LENGTH_SHORT).show()
@@ -49,11 +59,5 @@ class DialogDeleteAccount : DialogFragment(){
                 DialogInterface.OnClickListener{ dialog, id ->
                 })
         return builder.create()
-    }
-
-    fun startLoginActivity(){
-        val intent = Intent(context, LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
     }
 }

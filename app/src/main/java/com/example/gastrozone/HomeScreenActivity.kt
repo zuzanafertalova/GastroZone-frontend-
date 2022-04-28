@@ -33,9 +33,11 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
             val jsonObject = JSONTokener(data).nextValue() as JSONObject
             val is_company = jsonObject.getString("is_company").toBoolean()
             if (!is_company) {
-                tvChangeTypPodniku.visibility = View.GONE
-                btnShowOptions.visibility = View.GONE
-                tvTypPodnikuChosen.visibility = View.GONE
+                runOnUiThread {
+                    tvChangeTypPodniku.visibility = View.GONE
+                    btnShowOptions.visibility = View.GONE
+                    tvTypPodnikuChosen.visibility = View.GONE
+                }
             }
         }).start()
 
@@ -76,7 +78,7 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
         }
     }
 
-    override fun onOptionClick(text:String, id:Int) {
+    override fun onOptionClick(text: String, id: Int) {
         tvTypPodnikuChosen.text = text
         tvTypPodnikuChosen.contentDescription = id.toString()
     }
@@ -91,8 +93,7 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
                 val jsonObject = JSONTokener(data).nextValue() as JSONObject
                 val is_company = jsonObject.getString("is_company").toBoolean()
                 val usernamePicked = tvSetUsername.text.toString()
-                val firmTypeID = tvTypPodnikuChosen.contentDescription.toString().toInt()
-                val typPodniku = tvTypPodnikuChosen.text.toString()
+
 
                 if (!is_company) {
                     // keď sa jedná o usera
@@ -100,7 +101,7 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
                         val jsonPut = "{\"name\": \"$usernamePicked\"}"
                         val data =
                             httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
-                        runOnUiThread{
+                        runOnUiThread {
 
                             fragmentSetUserame.view?.visibility = View.GONE
                             setViewPager()
@@ -114,10 +115,15 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
                     }
                 } else {
                     // keď sa jedná o firmu
+                    val firmTypeID = tvTypPodnikuChosen.contentDescription.toString().toInt()
+                    val typPodniku = tvTypPodnikuChosen.text.toString()
+
                     if (!usernamePicked.equals("") && !typPodniku.equals("")) {
-                        val jsonPut = "{\"name\": \"$usernamePicked\", \"type_id\": \"$firmTypeID\"}"
-                        val data = httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
-                        runOnUiThread{
+                        val jsonPut =
+                            "{\"name\": \"$usernamePicked\", \"type_id\": \"$firmTypeID\"}"
+                        val data =
+                            httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
+                        runOnUiThread {
                             setViewPager()
                             fragmentSetUserame.view?.visibility = View.GONE
                         }

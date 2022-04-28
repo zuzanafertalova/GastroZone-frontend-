@@ -16,7 +16,6 @@ import org.json.JSONTokener
 class SettingsActivity : AppCompatActivity() {
 
     var isButtonChangeUsernameClicked: Boolean = false
-    var isButtonChangePasswordClicked: Boolean = false
     var isButtonChangeProfilePicClicked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class SettingsActivity : AppCompatActivity() {
 
         btnOpenChangeFragmentSet()
         buttonDeleteAccountOnClick()
-        //btnSetUsernameClick()
+        changeUsername()
     }
 
     private fun btnOpenChangeFragmentSet() {
@@ -126,18 +125,25 @@ class SettingsActivity : AppCompatActivity() {
         })
     }*/
 
-    /*private fun btnSetUsernameClick() {
-        btnSetUsername.setOnClickListener(View.OnClickListener {
-            if (tvSetUsername.text.isNotEmpty()) {
-                dbAdapterUser.changeUsername(
-                    authAdapter.currentUser!!,
-                    tvSetUsername.text.toString()
-                )
-                fragmentChangeUsername.view?.visibility = View.GONE
+    private fun changeUsername() {
+        btnSetUsername2.setOnClickListener(View.OnClickListener {
+            if (tvSetUsername2.text.isNotEmpty()) {
+                val meno = tvSetUsername2.text.toString()
+
+                Thread(Runnable {
+                    val httpClient = HttpActivity()
+                    val requestUrl = "http://37.9.170.36:8080/change"
+                    val jsonPut = "{\"name\": \"$meno\"}"
+                    httpClient.ExecPUTRequest(requestUrl, "", jsonPut)
+                }).start()
+                runOnUiThread {
+                    Toast.makeText(this, "Zmena mena prebehla úspešne!", Toast.LENGTH_SHORT).show()
+                    fragmentChangeUsername.view?.visibility = View.GONE
+                }
 
             }
         })
-    }*/
+    }
 
 
 }

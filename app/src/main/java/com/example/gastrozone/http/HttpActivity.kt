@@ -23,7 +23,7 @@ class HttpActivity : Runnable {
     fun ExecGETRequest(uri: String, authTokenLegacy: String? = "ReplaceMe"): String? {
 
 
-        var authToken : String = this.get_token()
+        val authToken : String = this.get_token()
 
         val requestBuilder = Request.Builder()
             .url(uri)
@@ -40,7 +40,7 @@ class HttpActivity : Runnable {
     fun ExecPUTRequest(uri: String, authTokenLegacy: String? = "ReplaceMe", putJson: String): String? {
 
         val mediaTypeJson = "application/json; charset=utf-8".toMediaType()
-        var authToken : String = this.get_token()
+        val authToken : String = this.get_token()
 
         val requestBuilder = Request.Builder()
             .url(uri)
@@ -56,6 +56,26 @@ class HttpActivity : Runnable {
         return res.body?.string()
     }
 
+
+    fun ExecDeleteRequest(uri: String, payloadData: String="{}"): String {
+        val mediaTypeJson = "application/json; charset=utf-8".toMediaType()
+        var authToken : String = this.get_token()
+
+        println(payloadData)
+
+        val requestBuilder = Request.Builder()
+            .url(uri)
+            .addHeader("X-Access-Token", authToken)
+            .addHeader("Connection","keepalive")
+            .header("Content-Type", "application/json")
+            .delete(payloadData.toRequestBody(mediaTypeJson))
+            .build()
+
+        val res = client.newCall(requestBuilder).execute()
+
+
+        return res.body.toString()
+    }
 
 
     fun register(sUrl: String, jsonPost: String): String? {
