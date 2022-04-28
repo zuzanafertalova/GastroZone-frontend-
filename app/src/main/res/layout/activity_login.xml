@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
         android:fontFamily="@font/source_sans_pro"
-        android:text="© Copyright 2019 TeaZone Inc."
+        android:text="© Copyright 2022 GastroZone Inc."
         android:textColor="#CACACA
 "
         app:layout_constraintBottom_toBottomOf="parent"

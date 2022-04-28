@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlinx.android.synthetic.main.fragment_firstsettings.*
-import com.example.gastrozone.homeScreenFragments.HomeScreenFragment
+import com.example.gastrozone.homeScreenFragments.FeedFragment
 import com.example.gastrozone.homeScreenFragments.ProfileFragment
 import com.example.gastrozone.homeScreenFragments.SearchFragment
 import com.example.gastrozone.adapters.ViewPagerAdapter
@@ -76,8 +76,9 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
         }
     }
 
-    override fun onOptionClick(text: String) {
+    override fun onOptionClick(text:String, id:Int) {
         tvTypPodnikuChosen.text = text
+        tvTypPodnikuChosen.contentDescription = id.toString()
     }
 
     fun btnSetUsernameSetClick() {
@@ -90,7 +91,9 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
                 val jsonObject = JSONTokener(data).nextValue() as JSONObject
                 val is_company = jsonObject.getString("is_company").toBoolean()
                 val usernamePicked = tvSetUsername.text.toString()
+                val firmTypeID = tvTypPodnikuChosen.contentDescription.toString().toInt()
                 val typPodniku = tvTypPodnikuChosen.text.toString()
+
                 if (!is_company) {
                     // keď sa jedná o usera
                     if (!usernamePicked.equals("")) {
@@ -112,7 +115,7 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
                 } else {
                     // keď sa jedná o firmu
                     if (!usernamePicked.equals("") && !typPodniku.equals("")) {
-                        val jsonPut = "{\"name\": \"$usernamePicked\", \"type_id\": \"999\"}"
+                        val jsonPut = "{\"name\": \"$usernamePicked\", \"type_id\": \"$firmTypeID\"}"
                         val data = httpClient.ExecPUTRequest(uri = "$baseUrl/change", token, jsonPut)
                         runOnUiThread{
                             setViewPager()
@@ -131,7 +134,7 @@ class HomeScreenActivity : AppCompatActivity(), BottomSheetTypeOfFirm.BottomShee
     fun setViewPager() {
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
         viewPagerAdapter.addManagerProfile(SearchFragment(), "")
-        viewPagerAdapter.addManagerProfile(HomeScreenFragment(), "")
+        viewPagerAdapter.addManagerProfile(FeedFragment(), "")
         viewPagerAdapter.addManagerProfile(ProfileFragment(), "")
         viewPager.adapter = viewPagerAdapter
         viewPager.currentItem = 1

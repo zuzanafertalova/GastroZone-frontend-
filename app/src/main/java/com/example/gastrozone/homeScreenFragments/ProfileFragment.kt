@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.gastrozone.LoginActivity
 import com.example.gastrozone.R
 import com.example.gastrozone.SettingsActivity
 import com.example.gastrozone.adapters.ViewPagerAdapter
 import com.example.gastrozone.http.HttpActivity
-import kotlinx.android.synthetic.main.fragment_firstsettings.*
 import kotlinx.android.synthetic.main.fragment_fragment_profile.*
 import org.json.JSONObject
 import org.json.JSONTokener
@@ -67,11 +65,13 @@ class ProfileFragment : Fragment() {
             val baseUrl = "http://37.9.170.36:8080"
             val httpClient = HttpActivity()
             val data = httpClient.ExecGETRequest(uri = "$baseUrl/v1/api/user")
-            val jsonObject = JSONTokener(data).nextValue() as JSONObject
-            val is_company = jsonObject.getString("is_company").toBoolean()
-            if (!is_company) {
-                //tvUsername.text = DbAdapterUser.userUser.username
-                //tvEmail.text = DbAdapterUser.userUser.email
+            val responseData = JSONTokener(data).nextValue() as JSONObject
+            val isCompany = responseData.getString("is_company").toBoolean()
+
+            if (!isCompany) {
+                tvUsername.text = responseData.getString("name")?.toString()
+                tvEmail.text = responseData.getString("email")?.toString()
+
                 //storageAdapter.getProfilePic(DbAdapterUser.userUser.profilePic!!, ivProfile_image)
                 runOnUiThread {
                     tvAdresaPodniku.visibility = View.GONE
@@ -83,27 +83,21 @@ class ProfileFragment : Fragment() {
                     tvPostsProfileFragment.visibility = View.GONE
                     val titles = ArrayList<String>()
                     titles.add("0")
-                    //titles.add(DbAdapterUser.userUser.reviews.toString())
                     titles.add("0")
-                    //titles.add(DbAdapterUser.userUser.following.toString())
                     setUserViewPager(titles)
                 }
 
 
             } else {
                 runOnUiThread {
-                    //tvUsername.text = DbAdapterUser.userFirma.username
-                    //tvEmail.text = DbAdapterUser.userFirma.email
-                    //tvFollowing_FollowersProfileFragment.text = "Sledovatelia"
+                    tvUsername.text = responseData.getString("name")?.toString()
+                    tvEmail.text = responseData.getString("email")?.toString()
+                    tvTypPodniku.text = responseData.getString("type")?.toString()
                     //storageAdapter.getProfilePic(DbAdapterUser.userFirma.profilePic!!, ivProfile_image)
-                    //tvTypPodniku.text = DbAdapterUser.userFirma.typPodniku
                     val titles = ArrayList<String>()
                     titles.add("0")
-                    //titles.add(DbAdapterUser.userFirma.reviews.toString())
                     titles.add("0")
-                    //titles.add(DbAdapterUser.userFirma.posts.size.toString())
                     titles.add("0")
-                    //titles.add(DbAdapterUser.userFirma.followers.toString())
                     setFirmaViewPager(titles)
                 }
             }

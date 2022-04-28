@@ -156,15 +156,6 @@
 
                 />
 
-            <fragment
-                android:id="@+id/fragmentChangeTypPodniku"
-                android:name="com.example.gastrozone.homeScreenFragments.ChangeTypeOfFirmFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10sp"
-                tools:layout="@layout/fragment_change_type_of_firm" />
-
             <Button
                 android:id="@+id/buttonChangeTypPodniku"
                 android:layout_width="250sp"

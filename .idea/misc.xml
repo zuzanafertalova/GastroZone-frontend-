@@ -20,10 +20,11 @@
         <entry key="app/src/main/res/layout/activity_profile_from_search.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.22970797773720564" />
         <entry key="app/src/main/res/layout/activity_register_firm.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.11197916666666667" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1823237101236979" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/bottom_sheet_filters.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/bottom_sheet_type_of_firm.xml" value="0.1947463768115942" />
+        <entry key="app/src/main/res/layout/dialog_password.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/fragment_change_password.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/fragment_change_profile_pic.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/fragment_change_type_of_firm.xml" value="0.1947463768115942" />

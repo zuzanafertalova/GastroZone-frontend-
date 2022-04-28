@@ -2,6 +2,7 @@
     <string name="app_name">GastroZone</string>
     <string name="viewpager">ViewPager</string>
     <string name="tab">Tab</string>
+    <string name="name">Vložte meno</string>
     <string name="button">Button</string>
 
 </resources>

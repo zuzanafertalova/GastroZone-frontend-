@@ -62,7 +62,7 @@ class BottomSheetTypeOfFirm(private var mBottomSheetListener: BottomSheetListene
                     typeTextView.textSize = 15 * getResources().getDisplayMetrics().scaledDensity;
                     typeTextView.textAlignment = View.TEXT_ALIGNMENT_CENTER
                     typeTextView.setOnClickListener {
-                        mBottomSheetListener.onOptionClick(typeTextView.text.toString())
+                        mBottomSheetListener.onOptionClick(typeTextView.text.toString(), typeTextView.id)
                         dismiss()
                     }
 
@@ -77,7 +77,7 @@ class BottomSheetTypeOfFirm(private var mBottomSheetListener: BottomSheetListene
     }
 
     interface BottomSheetListener{
-        fun onOptionClick(text:String)
+        fun onOptionClick(text:String, id:Int)
     }
 
 }
