@@ -38,12 +38,14 @@ class LoginActivity : AppCompatActivity() {
                     val auth = "Basic $encodedString"
                     println(auth)
                     val token = response.login(url, auth)
-
-
-                    runOnUiThread {
-                        Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
-                        startHomeScreenActivity()
-                    }
+                    val new_token = response.get_token()
+                    if (new_token != "")
+                        runOnUiThread {
+                            Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
+                            startHomeScreenActivity()
+                        }
+                    else
+                        println("Zle heslo alebo meno")
 
                 }).start()
             }

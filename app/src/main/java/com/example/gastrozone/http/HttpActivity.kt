@@ -107,23 +107,31 @@ class HttpActivity : Runnable {
                 .addHeader("Connection","close")
                 .post(empty)
                 .build()
-            val response = client.newCall(requestBuilder).execute()
+            client.newCall(requestBuilder).execute().use { response ->
+                if (response.isSuccessful)
+                    result = response.body?.string()
+                    if(result == null)
+                        return "zle meno alebo heslo"
+                    val jsonObject = JSONTokener(result).nextValue() as JSONObject
+                    val token = jsonObject.getString("token")
+                    val user_type = jsonObject.getString("user_type")
+                    println("Got following payload: ${response.body}")
+                    Token.change_token(token)
+                    println(Token.token)
+                    Token.user(user_type)
+                    println(Token.user_type)
 
-            result = response.body?.string()
-            println("Got following payload: ${response.body}")
+
+            }
+
+
+
 
             if (result?.isEmpty() == true) {
                 println("Got invalid response")
             }
 
-            val jsonObject = JSONTokener(result).nextValue() as JSONObject
-            val token = jsonObject.getString("token")
-            val user_type = jsonObject.getString("user_type")
 
-            Token.change_token(token)
-            println(Token.token)
-            Token.user(user_type)
-            println(Token.user_type)
 
         } catch (err: Error) {
             print("Error when executing get request: " + err.localizedMessage)
