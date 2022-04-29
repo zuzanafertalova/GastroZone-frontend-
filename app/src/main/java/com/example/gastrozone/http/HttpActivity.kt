@@ -2,6 +2,7 @@ package com.example.gastrozone.http
 
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
@@ -9,6 +10,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.internal.EMPTY_REQUEST
 import org.json.JSONObject
 import org.json.JSONTokener
+import java.io.File
 import java.sql.SQLOutput
 import kotlin.reflect.typeOf
 
@@ -54,6 +56,27 @@ class HttpActivity : Runnable {
 
 
         return res.body?.string()
+    }
+
+    fun ExecPOSTImage(uri: String, image: File, imageName: String): String? {
+        val mediaTypeimage = "image/png".toMediaType()
+        val authToken : String = this.get_token()
+        val requestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("file", imageName, RequestBody.create(mediaTypeimage, image))
+            .build()
+
+        val requestBuilder = Request.Builder()
+            .url(uri)
+            .addHeader("X-Access-Token", authToken)
+            .addHeader("Connection","close")
+            .post(requestBody)
+            .build()
+        val res = client.newCall(requestBuilder).execute()
+
+
+        return res.body?.string()
+
     }
 
 

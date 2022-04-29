@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../../layout/custom_preview.xml" value="0.271875" />
         <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/activity_home_screen.xml" value="0.253125" />
         <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/activity_profile_from_search.xml" value="0.253125" />
         <entry key="..\:/Users/Lubomir/Documents/GitHub/GastroZone/GastroZone-frontend-/app/src/main/res/layout/activity_register.xml" value="0.253125" />
@@ -30,7 +31,9 @@
         <entry key="app/src/main/res/layout/fragment_change_type_of_firm.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/fragment_firstsettings.xml" value="0.182518115942029" />
         <entry key="app/src/main/res/layout/fragment_fragment_profile.xml" value="0.1947463768115942" />
+        <entry key="app/src/main/res/layout/fragment_fragment_search.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/fragment_set_username.xml" value="0.1947463768115942" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.1947463768115942" />
       </map>
     </option>
   </component>

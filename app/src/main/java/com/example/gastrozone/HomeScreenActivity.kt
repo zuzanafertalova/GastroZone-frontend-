@@ -14,7 +14,6 @@ import com.example.gastrozone.dialogs.BottomSheetTypeOfFirm
 import com.example.gastrozone.R
 import com.example.gastrozone.http.HttpActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.bottom_sheet_filters.*
 import org.json.JSONObject
 import org.json.JSONTokener
 

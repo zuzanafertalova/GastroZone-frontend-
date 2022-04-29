@@ -30,7 +30,8 @@ class LoginActivity : AppCompatActivity() {
                     val url = "http://37.9.170.36:8080/login"
                     val jsonPost = "$email:$password"
                     println(jsonPost)
-                    val encodedString: String = Base64.getEncoder().encodeToString(jsonPost.toByteArray())
+                    val encodedString: String =
+                        Base64.getEncoder().encodeToString(jsonPost.toByteArray())
 
 
                     val response = HttpActivity()
@@ -44,9 +45,15 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
                             startHomeScreenActivity()
                         }
-                    else
-                        println("Zle heslo alebo meno")
-
+                    else {
+                        runOnUiThread {
+                            Toast.makeText(
+                                this,
+                                "Nesprávne meno/heslo",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }).start()
             }
         })

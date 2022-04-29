@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/editText_search"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10sp"
+        android:background="@drawable/search_rectangle_white"
+        android:baselineAligned="false"
+        android:hint="Search..."
+        android:textColor="@color/colorGreyLogo"
+        android:textColorHighlight="@color/colorGrey"
+        android:textColorHint="@color/colorGrey"
+        android:textColorLink="@color/colorGreyLogo" />
+
+    <Button
+        android:id="@+id/buttonConfirmSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Potvrdiť" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchingRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="12dp"
+        tools:listitem="@layout/list_item"></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

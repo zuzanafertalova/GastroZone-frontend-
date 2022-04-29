@@ -12,12 +12,20 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_change_profile_pic.*
 import com.example.gastrozone.R
+import com.example.gastrozone.http.HttpActivity
+import java.io.File
 
 class ChangeProfilePicFragment : Fragment() {
 
 
     private val PICK_IMAGE_REQUEST = 1
     private lateinit var mImageUri: Uri
+
+    fun Fragment?.runOnUiThread(action: () -> Unit) {
+        this ?: return
+        if (!isAdded) return // Fragment not attached to an Activity
+        activity?.runOnUiThread(action)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
             : View? {
@@ -28,23 +36,19 @@ class ChangeProfilePicFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         onBtnLoadProfilePicClick()
-        //onBtnSaveProfilePicClick()
+        onBtnSaveProfilePicClick()
     }
 
-    /*fun onBtnSaveProfilePicClick(){
+    fun onBtnSaveProfilePicClick(){
         btnSaveProfilePic2.setOnClickListener{
-            var picID: String? = null
-            if (ivChangeProfilePic.getDrawable() == null) {
-            }
-            else {
-                picID = storageAdapter.uploadProfilePic(ivChangeProfilePic)
-            }
-
-            dbAdapterUser.updateProfilePic(authAdapter.currentUser!!.uid,picID!!)
-            fragmentChangeProfilePic.view?.visibility = View.GONE
-            Toast.makeText(context,"Úspešne zmenené.", Toast.LENGTH_SHORT).show()
+            println(mImageUri)
+            Thread(Runnable {
+                val auxFile: File = File(mImageUri.toString())
+                val response = HttpActivity()
+                val token = response.ExecPOSTImage("http://37.9.170.36:8080/upload", auxFile, auxFile.name)
+            }).start()
         }
-    }*/
+    }
 
     fun onBtnLoadProfilePicClick(){
         btnLoadProfilePic2.setOnClickListener{
