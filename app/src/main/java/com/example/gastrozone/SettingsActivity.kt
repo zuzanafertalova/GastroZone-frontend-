@@ -1,5 +1,6 @@
 package com.example.gastrozone
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -46,6 +47,16 @@ class SettingsActivity : AppCompatActivity() {
         btnOpenChangeFragmentSet()
         buttonDeleteAccountOnClick()
         changeUsername()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        val intent = Intent(this, HomeScreenActivity::class.java).apply {
+            putExtra("DESIRED_FRAGMENT", "profile")
+        }
+
+        startActivity(intent)
     }
 
     private fun btnOpenChangeFragmentSet() {

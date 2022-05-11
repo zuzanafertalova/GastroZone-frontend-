@@ -32,7 +32,7 @@ class RegisterFirmActivity : AppCompatActivity() {
 
             } else {
 
-                if (password.equals(confrimpassword) && pattern_passwd.matcher(password).matches() && pattern_email.matcher(email).matches()) {
+                if (password.equals(confrimpassword)) {
                     Thread(Runnable {
                         val url = "http://37.9.170.36:8080/create_company"
                         val jsonPost =

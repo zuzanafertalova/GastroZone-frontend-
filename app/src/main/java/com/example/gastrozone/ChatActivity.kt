@@ -1,29 +1,35 @@
 package com.example.gastrozone
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.gastrozone.dialogs.DialogDeleteAccount
 import com.example.gastrozone.http.HttpActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.chat.*
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.fragment_set_username.*
-import org.json.JSONObject
-import org.json.JSONTokener
 
 class ChatActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.chat)
+        setContentView(R.layout.activity_chat)
         val response = HttpActivity()
         val nieco = response.connectionWebSockt("10.0.2.2", 8080)
         btnChat()
 
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        val intent = Intent(this, HomeScreenActivity::class.java).apply {
+            putExtra("DESIRED_FRAGMENT", "profile")
+        }
+
+        startActivity(intent)
     }
 
     private fun btnChat() {

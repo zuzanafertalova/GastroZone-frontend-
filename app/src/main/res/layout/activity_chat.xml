@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/upper_menu2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#22BCAF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contextClickable="true"
+            android:fontFamily="@font/bauhaus_93_regular"
+            android:gravity="center"
+            android:text="GastroTone"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/tvChat"
+        android:layout_width="231dp"
+        android:layout_height="82dp"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="Napíšte niečo.."
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/button_chat"
+        android:layout_width="134dp"
+        android:layout_height="62dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_grey"
+        app:backgroundTint="@null"
+        android:text="Odoslať" />
+
+</LinearLayout>

@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:backgroundTint="@null"
+    android:id="@+id/profile"
     >
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backgroundTint="@null"
+        android:id="@+id/profile2"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:backgroundTint="@null"
-            app:layout_scrollFlags="scroll">
+            app:layout_scrollFlags="scroll"
+            >
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivProfile_image"
@@ -152,21 +155,21 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/btnAddPost"
-                android:layout_width="48dp"
+                android:id="@+id/btnMessages"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_marginTop="10sp"
-                android:background="@drawable/ic_add_post"
+                android:background="@drawable/button_teal"
                 android:contentDescription="@string/button"
+                android:text="Správy"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPopisPodniku"
-                app:layout_constraintVertical_bias="0.0"
 
-                />
+                app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/btnOtvaracieHodiny"
@@ -186,7 +189,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnAddPost"
+                app:layout_constraintTop_toBottomOf="@+id/btnMessages"
                 app:layout_constraintVertical_bias="0.0"
 
                 />
@@ -210,7 +213,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnNapojovylistok"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/btnOtvaracieHodiny"
-                app:layout_constraintTop_toBottomOf="@+id/btnAddPost"
+                app:layout_constraintTop_toBottomOf="@+id/btnMessages"
                 app:layout_constraintVertical_bias="0.062"
 
                 />
@@ -233,7 +236,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnAddPost"
+                app:layout_constraintTop_toBottomOf="@+id/btnMessages"
                 app:layout_constraintVertical_bias="0.0"
 
                 />

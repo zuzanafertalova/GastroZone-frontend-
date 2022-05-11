@@ -1,20 +1,25 @@
 package com.example.gastrozone.homeScreenFragments
 
+import android.R.attr.button
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.gastrozone.ChatActivity
 import com.example.gastrozone.LoginActivity
 import com.example.gastrozone.R
 import com.example.gastrozone.SettingsActivity
 import com.example.gastrozone.adapters.ViewPagerAdapter
 import com.example.gastrozone.http.HttpActivity
+import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_fragment_profile.*
 import org.json.JSONObject
 import org.json.JSONTokener
+
 
 class ProfileFragment : Fragment() {
 
@@ -29,6 +34,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        btnMessagesSetClick()
         btnOtvbaracieHodiny()
         btnLogOutSetClick()
         setUserToTextFields()
@@ -57,18 +63,21 @@ class ProfileFragment : Fragment() {
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 activity?.startActivity(intent)
             }
-
         }
     }
-    fun btnOtvbaracieHodiny() {
-        btnOtvaracieHodiny.setOnClickListener {
+
+    fun btnMessagesSetClick() {
+        btnMessages.setOnClickListener {
             runOnUiThread {
                 val intent = Intent(activity, ChatActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 activity?.startActivity(intent)
             }
-
         }
+    }
+
+    fun btnOtvbaracieHodiny() {
+
     }
 
     fun setUserToTextFields() {
@@ -90,7 +99,7 @@ class ProfileFragment : Fragment() {
                     btnOtvaracieHodiny.visibility = View.GONE
                     tvTypPodniku.visibility = View.GONE
                     btnNapojovylistok.visibility = View.GONE
-                    btnAddPost.visibility = View.GONE
+                    btnMessages.visibility = View.GONE
                     tvPostsProfileFragment.visibility = View.GONE
                     val titles = ArrayList<String>()
                     titles.add("0")
