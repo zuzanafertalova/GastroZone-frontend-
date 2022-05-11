@@ -1,18 +1,12 @@
 package com.example.gastrozone.http
 
-import androidx.appcompat.app.AppCompatActivity
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.internal.EMPTY_REQUEST
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.io.File
-import java.sql.SQLOutput
-import kotlin.reflect.typeOf
 
 
 class HttpActivity : Runnable {
@@ -56,6 +50,42 @@ class HttpActivity : Runnable {
 
 
         return res.body?.string()
+    }
+    fun connectionWebSockt(hostName:String,port:Int){
+        val httpClient = OkHttpClient.Builder()
+            .pingInterval(40, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        val webSocketUrl = "ws://${hostName}:${port}"
+        val request = Request.Builder()
+            .url(webSocketUrl)
+            .build()
+        httpClient.newWebSocket(request, object:WebSocketListener(){
+            override fun onOpen(webSocket: WebSocket, response: Response) {
+                super.onOpen(webSocket, response)
+                //Websocket connection establishment
+                Nieco.setWebSocket(webSocket)
+            }
+
+            override fun onMessage(webSocket: WebSocket, text: String) {
+                super.onMessage(webSocket, text)
+                println(text)
+            }
+
+            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
+                super.onClosing(webSocket, code, reason)
+            }
+
+            override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+                super.onClosed(webSocket, code, reason)
+            }
+
+            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+                super.onFailure(webSocket, t, response)
+            }
+        })
+    }
+    fun send(message: String?) {
+        get_WebSocket()?.send(message!!)
     }
 
     fun ExecPOSTImage(uri: String, image: File, imageName: String): String? {
@@ -184,8 +214,17 @@ class HttpActivity : Runnable {
     fun get_token() : String {
         return Token.token
     }
+    fun get_WebSocket() : WebSocket? {
+        return Nieco.mWebSocket
+    }
 }
+object Nieco{
+    var mWebSocket : WebSocket? = null
+    fun setWebSocket(newWebSocket : WebSocket){
+        mWebSocket = newWebSocket
 
+    }
+}
 
 object Token {
     var token = ""

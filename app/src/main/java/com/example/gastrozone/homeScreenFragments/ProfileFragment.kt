@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.gastrozone.ChatActivity
 import com.example.gastrozone.LoginActivity
 import com.example.gastrozone.R
 import com.example.gastrozone.SettingsActivity
@@ -28,7 +29,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
+        btnOtvbaracieHodiny()
         btnLogOutSetClick()
         setUserToTextFields()
         btnSettingsSetClick()
@@ -53,6 +54,16 @@ class ProfileFragment : Fragment() {
         btnSettings.setOnClickListener {
             runOnUiThread {
                 val intent = Intent(activity, SettingsActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                activity?.startActivity(intent)
+            }
+
+        }
+    }
+    fun btnOtvbaracieHodiny() {
+        btnOtvaracieHodiny.setOnClickListener {
+            runOnUiThread {
+                val intent = Intent(activity, ChatActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 activity?.startActivity(intent)
             }
