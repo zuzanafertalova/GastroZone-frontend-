@@ -36,6 +36,12 @@
         <activity
             android:name=".ChatActivity"
             android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".UserChatActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".ProfileFromSearchActivity"
+            android:screenOrientation="fullSensor" />
     </application>
 
 </manifest>

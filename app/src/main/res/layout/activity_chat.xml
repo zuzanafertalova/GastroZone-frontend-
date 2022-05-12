@@ -3,35 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/search_rectangle_green"
+    android:foregroundGravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    app:layout_anchorGravity="center">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/upper_menu2"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesRW"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="#22BCAF"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:layout_margin="20dp"
+        android:visibility="visible"
+        tools:listitem="@layout/list_messages" />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:contextClickable="true"
-            android:fontFamily="@font/bauhaus_93_regular"
-            android:gravity="center"
-            android:text="GastroTone"
-            android:textColor="@android:color/white"
-            android:textSize="30dp" />
-    </androidx.appcompat.widget.Toolbar>
 
     <EditText
         android:id="@+id/tvChat"
-        android:layout_width="231dp"
-        android:layout_height="82dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:hint="Napíšte niečo.."
@@ -39,11 +31,11 @@
 
     <Button
         android:id="@+id/button_chat"
-        android:layout_width="134dp"
+        android:layout_width="120dp"
         android:layout_height="62dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/button_grey"
-        app:backgroundTint="@null"
-        android:text="Odoslať" />
+        android:text="Odoslať"
+        app:backgroundTint="@null" />
 
 </LinearLayout>

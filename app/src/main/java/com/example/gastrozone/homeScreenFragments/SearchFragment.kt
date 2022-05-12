@@ -1,5 +1,6 @@
 package com.example.gastrozone.homeScreenFragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,7 @@ import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gastrozone.ProfileFromSearchActivity
 import com.example.gastrozone.adapters.SearchResultAdapter
 import com.example.gastrozone.R
 import com.example.gastrozone.http.HttpActivity
@@ -21,7 +23,7 @@ import org.json.JSONTokener
 
 class SearchFragment : Fragment(){
 
-    internal var  adapter: SearchResultAdapter? = SearchResultAdapter()
+    internal var adapter: SearchResultAdapter? = null
 
     fun Fragment?.runOnUiThread(action: () -> Unit) {
         this ?: return
@@ -46,6 +48,14 @@ class SearchFragment : Fragment(){
     private fun setUpRecyclerView() {
 
         searchingRecyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = SearchResultAdapter(object : SearchResultAdapter.OnResultsClick {
+            override fun setOnProfileClickListener(objectID: String?) {
+                editText_search.clearFocus()
+                val intent = Intent(context, ProfileFromSearchActivity::class.java)
+                intent.putExtra("objectID", objectID)
+                startActivity(intent)
+            }
+        })
         searchingRecyclerView.adapter = adapter
     }
 

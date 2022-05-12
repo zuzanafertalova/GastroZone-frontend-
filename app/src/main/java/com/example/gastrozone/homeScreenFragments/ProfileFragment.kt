@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.gastrozone.ChatActivity
-import com.example.gastrozone.LoginActivity
-import com.example.gastrozone.R
-import com.example.gastrozone.SettingsActivity
+import com.example.gastrozone.*
 import com.example.gastrozone.adapters.ViewPagerAdapter
 import com.example.gastrozone.http.HttpActivity
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -69,7 +66,7 @@ class ProfileFragment : Fragment() {
     fun btnMessagesSetClick() {
         btnMessages.setOnClickListener {
             runOnUiThread {
-                val intent = Intent(activity, ChatActivity::class.java)
+                val intent = Intent(activity, UserChatActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 activity?.startActivity(intent)
             }
